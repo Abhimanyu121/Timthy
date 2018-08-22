@@ -1,6 +1,7 @@
 package bleh.timthy
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -45,9 +46,10 @@ class sublist : AppCompatActivity() {
         val button=buttonsub
         button.setOnClickListener {view ->
             var i=0
+            val db=TimmyDatabase(this)
+            db.add_Sub("Free period",this)
             while(i<scount){
                 var name=tva[i].getText().toString()
-                val db=TimmyDatabase(this)
                 db.add_Sub(name,this)
                 i++
                 Toast.makeText(this,"Done!",Toast.LENGTH_LONG)
@@ -66,6 +68,13 @@ class sublist : AppCompatActivity() {
         var d5= preferences.getBoolean("day5",false)
         var d6= preferences.getBoolean("day6",false)
         var d7= preferences.getBoolean("day7",false)
+
+        if(d1==true){
+            val intent=Intent(this,Monday::class.java)
+            intent.putExtra("day","d1")
+            startActivity(intent)
+        }
+        else if(d2==true){}
 
 
     }
