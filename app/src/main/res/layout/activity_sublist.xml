@@ -12,6 +12,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/xtitle"
     android:textAllCaps="true"
+    android:textColor="#ffffff"
     android:layout_gravity="center"
     android:textSize="24dip"
     android:textAlignment="center" />
@@ -25,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ADD SUBJECTS"
+        android:background="@color/colorAccent"
         android:id="@+id/buttonsub"
         />
 

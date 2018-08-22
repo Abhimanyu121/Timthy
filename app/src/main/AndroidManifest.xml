@@ -12,21 +12,24 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name">
+
+        </activity>
         <activity
             android:name=".initial"
             android:label="@string/app_name">
 
         </activity>
-        <activity android:name=".Monday">
-
-        </activity>
-        <activity android:name=".sublist">
+        <activity android:name=".Monday"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".sublist">
+
         </activity>
     </application>
 

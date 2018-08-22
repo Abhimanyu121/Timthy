@@ -5,6 +5,9 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.os.Parcel
+import android.os.Parcelable
+import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.Toast
 import java.security.AccessController.getContext
@@ -43,21 +46,32 @@ class TimmyDatabase(context: Context):SQLiteOpenHelper(context, "TimmyTable.db",
             Log.e("blehdb",e.message)}
     }
 
-    fun fetch_subbg(context: Context):ArrayList<String>?{
+    fun fetch_subbg(context: Context):Array<String>?{
         var columns=arrayOf("name")
-        var retunlist: ArrayList<String>?=null
+        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val pcount = Integer.parseInt(preferences.getString("nperiod", "0"))
+        var retunlist=Array<String>(pcount,{i->String()})
         var db=this.readableDatabase
+
         var cursor: Cursor =db.query("Sub_list",columns,null,null,null,null,null)
         if(cursor.moveToFirst()){
+            var l=0
             do{
                 var subname=cursor.getString(cursor.getColumnIndex("name"))
-                retunlist!!.add(subname)
+                Log.e("bleh",subname)
+                retunlist[l]=subname
+                Log.e("list",retunlist[l])
+                l++
+
             }while(cursor.moveToNext())
             cursor.close()
             db.close()
+         var i=0
+
         }
-        return retunlist
         Toast.makeText(context,"Sub List fetched",Toast.LENGTH_SHORT).show()
+        return retunlist
+
 
     }
 }
