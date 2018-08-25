@@ -45,11 +45,21 @@ class TimmyDatabase(context: Context):SQLiteOpenHelper(context, "TimmyTable.db",
         catch (e:Exception){
             Log.e("blehdb",e.message)}
     }
+    fun tday(day:String){
+        try {
+            val adb: SQLiteDatabase = this.writableDatabase
+            var table = "create table '" + day + "'(name text);"
+            adb.execSQL(table)
+        }
+        catch (e:Exception){
+            Log.e("belh",e.message)
+        }
+    }
 
     fun fetch_subbg(context: Context):Array<String>?{
         var columns=arrayOf("name")
         val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val pcount = Integer.parseInt(preferences.getString("nperiod", "0"))
+        val pcount = Integer.parseInt(preferences.getString("nperiod", "0"))+1
         var retunlist=Array<String>(pcount,{i->String()})
         var db=this.readableDatabase
 
@@ -57,7 +67,7 @@ class TimmyDatabase(context: Context):SQLiteOpenHelper(context, "TimmyTable.db",
         if(cursor.moveToFirst()){
             var l=0
             do{
-                var subname=cursor.getString(cursor.getColumnIndex("name"))
+                var subname=cursor.getString(cursor.getColumnIndex("name")).replace("_"," ",true).toUpperCase()
                 Log.e("bleh",subname)
                 retunlist[l]=subname
                 Log.e("list",retunlist[l])
@@ -71,6 +81,20 @@ class TimmyDatabase(context: Context):SQLiteOpenHelper(context, "TimmyTable.db",
         }
         Toast.makeText(context,"Sub List fetched",Toast.LENGTH_SHORT).show()
         return retunlist
+
+
+    }
+    fun ttable(day:String,name:String){
+       try {
+           val adb: SQLiteDatabase = this.writableDatabase
+           var content = ContentValues()
+           content.put("name", name)
+           adb.insert(day, null, content)
+           adb.close()
+       }
+       catch(e:Exception){
+          Log.e("bleh",e.message)
+           }
 
 
     }

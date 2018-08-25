@@ -2,6 +2,7 @@ package bleh.timthy
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color.WHITE
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -39,6 +40,7 @@ class sublist : AppCompatActivity() {
         while (i <scount) {
             var k=i
             tva!![i].setHint("Enter Subject number :"+(k+1))
+            tva!![i].setHintTextColor(WHITE)
             llsublist.addView(tva!![i])
 
             i++
@@ -47,14 +49,15 @@ class sublist : AppCompatActivity() {
         button.setOnClickListener {view ->
             var i=0
             val db=TimmyDatabase(this)
-            db.add_Sub("Free period",this)
+            db.add_Sub("free_period",this)
             while(i<scount){
-                var name=tva[i].getText().toString()
+                var name=tva[i].getText().toString().replace(" ","_",true).toLowerCase()
                 db.add_Sub(name,this)
                 i++
                 Toast.makeText(this,"Done!",Toast.LENGTH_LONG)
 
             }
+            change_activity()
         }
 
 
@@ -71,10 +74,49 @@ class sublist : AppCompatActivity() {
 
         if(d1==true){
             val intent=Intent(this,Monday::class.java)
-            intent.putExtra("day","d1")
+            intent.putExtra("day","monday")
+            intent.putExtra("key",1)
             startActivity(intent)
         }
-        else if(d2==true){}
+        else if(d2==true){
+            val intent=Intent(this,Monday::class.java)
+            intent.putExtra("day","tuesday")
+            intent.putExtra("key",2)
+            startActivity(intent)
+        }
+        else if(d3==true){
+            val intent=Intent(this,Monday::class.java)
+            intent.putExtra("day","wednesday")
+            intent.putExtra("key",3)
+            startActivity(intent)
+        }
+        else if(d4==true){
+            val intent=Intent(this,Monday::class.java)
+            intent.putExtra("day","thursday")
+            intent.putExtra("key",4)
+            startActivity(intent)
+        }
+        else if(d5==true){
+            val intent=Intent(this,Monday::class.java)
+            intent.putExtra("day","friday")
+            intent.putExtra("key",5)
+            startActivity(intent)
+        }
+        else if(d6==true){
+            val intent=Intent(this,Monday::class.java)
+            intent.putExtra("day","saturday")
+            intent.putExtra("key",6)
+            startActivity(intent)
+        }
+        else if(d7==true){
+            val intent=Intent(this,Monday::class.java)
+            intent.putExtra("day","sunday")
+            intent.putExtra("key",7)
+            startActivity(intent)
+        }
+        else{
+            Toast.makeText(this,"you should have chosen some days,now deal with it until i add exception handling",Toast.LENGTH_SHORT)
+        }
 
 
     }

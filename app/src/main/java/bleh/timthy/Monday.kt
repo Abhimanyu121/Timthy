@@ -1,5 +1,6 @@
 package bleh.timthy
 
+import android.content.Intent
 import android.graphics.Color.WHITE
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -19,16 +20,46 @@ import kotlinx.android.synthetic.main.activity_monday.*
 class Monday : AppCompatActivity() {
     var recyl:RecyclerView?=null
     var recyadapter:recycler1?=null
+    var day:String?=null
+    var key:Int?=null
+
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_monday)
-
+        var inten=intent
+        key=inten.getIntExtra("key",1)
+        getday()
+        val db=TimmyDatabase(this)
+        db.tday(day.toString())
 
         createLayout()
 
+    }
+    fun getday(){
+        if(key==1){
+            day="monday"
+        }
+        if(key==2){
+            day="tuesday"
+        }
+        if(key==3){
+            day="wednesday"
+        }
+        if(key==4){
+            day="thursday"
+        }
+        if(key==5){
+            day="friday"
+        }
+        if(key==6){
+            day="saturday"
+        }
+        if(key==7){
+            day="sunday"
+        }
     }
 
     fun createLayout(){
@@ -64,5 +95,44 @@ class Monday : AppCompatActivity() {
             llmonday.addView(spinner[i])
             p++
         }
+        fab.setOnClickListener{view ->
+            var i=0
+            val adb=TimmyDatabase(this)
+            var sub:String?=null
+            for (i in 0..spinner.lastIndex){
+               sub= spinner[i].selectedItem.toString()
+                adb.ttable(day!!,sub)
+
+            }
+            changeactivty()
+        }
     }
+    fun changeactivty(){
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        var day=BooleanArray(8)
+        day[1]= preferences.getBoolean("day1",false)
+        day[2]= preferences.getBoolean("day2",false)
+        day[3]= preferences.getBoolean("day3",false)
+        day[4]= preferences.getBoolean("day4",false)
+        day[5]= preferences.getBoolean("day5",false)
+        day[6]= preferences.getBoolean("day6",false)
+        day[7]= preferences.getBoolean("day7",false)
+        var i:Int?=key!!+1
+        while(i!!<=7){
+            if(day[i]==true){
+                val intent=Intent(this,Monday::class.java)
+                intent.putExtra("key",i)
+                startActivity(intent)
+                break
+            }
+            else{
+                i++
+            }
+        }
+        if (i==8){
+            val intent=Intent(this,MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
 }
