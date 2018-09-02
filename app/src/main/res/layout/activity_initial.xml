@@ -31,8 +31,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter your Name"
+                    android:textColorHint="@color/colorAccent"
                     android:inputType="textPersonName"
-                    android:textColor="@color/bgtext"
+                    android:textColor="@color/foreground_material_light"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -42,35 +43,35 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Choose the working days"
+                android:textColor="@color/foreground_material_light"
                 android:textAllCaps="true"
                 android:textAlignment="center"/>
+
             <android.support.v7.widget.AppCompatCheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sunday"
-                android:textAllCaps="true"
-                android:id="@+id/d1" />
-            <android.support.v7.widget.AppCompatCheckBox
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:textColor="@color/foreground_material_light"
                 android:text="Monday"
                 android:textAllCaps="true"
                 android:id="@+id/d2" />
             <android.support.v7.widget.AppCompatCheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/foreground_material_light"
                 android:text="tuesday"
                 android:textAllCaps="true"
                 android:id="@+id/d3" />
             <android.support.v7.widget.AppCompatCheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/foreground_material_light"
                 android:text="wednesday"
                 android:textAllCaps="true"
                 android:id="@+id/d4" />
             <android.support.v7.widget.AppCompatCheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/foreground_material_light"
                 android:text="thursday"
                 android:textAllCaps="true"
                 android:id="@+id/d5" />
@@ -78,17 +79,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="friday"
+                android:textColor="@color/foreground_material_light"
                 android:textAllCaps="true"
                 android:id="@+id/d6" />
             <android.support.v7.widget.AppCompatCheckBox
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/foreground_material_light"
                 android:text="saturday"
                 android:textAllCaps="true"
                 android:id="@+id/d7" />
+            <android.support.v7.widget.AppCompatCheckBox
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/foreground_material_light"
+                android:text="Sunday"
+                android:textAllCaps="true"
+                android:id="@+id/d1" />
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+                android:textColor="@color/foreground_material_light"
 
                 <AutoCompleteTextView
                     android:id="@+id/npd"
@@ -98,6 +109,8 @@
                     android:textAllCaps="true"
                     android:inputType="number"
                     android:maxLines="1"
+                    android:textColor="@color/foreground_material_light"
+                    android:textColorHint="@color/colorAccent"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -111,6 +124,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Minimum permissible attendance"
                     android:textAllCaps="true"
+                    android:textColor="@color/foreground_material_light"
+                    android:textColorHint="@color/colorAccent"
                     android:inputType="number"
                     android:maxLines="1"
                     android:singleLine="true" />
@@ -127,8 +142,29 @@
                     android:hint="Total Number Of Subjects"
                     android:textAllCaps="true"
                     android:inputType="number"
+                    android:textColor="@color/foreground_material_light"
+                    android:textColorHint="@color/colorAccent"
                     android:maxLines="1"
                     android:singleLine="true" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    android:textColor="@color/foreground_material_light"
+
+                    <AutoCompleteTextView
+                        android:id="@+id/nlb"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Number of Labs"
+                        android:textAllCaps="true"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:textColor="@color/foreground_material_light"
+                        android:textColorHint="@color/colorAccent"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -141,6 +177,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColor="@color/foreground_material_light"
+                android:textColorHint="@color/colorAccent"
+                android:background="@color/colorAccent"
                 android:text="GET STARTED"
                 android:textStyle="bold"
                 android:onClick="bleh"/>

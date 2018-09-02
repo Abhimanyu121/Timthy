@@ -30,24 +30,24 @@ class initial : AppCompatActivity() {
         val editor = preferences.edit()
         Log.e("bleh5","bleh")
         var nm=name.getText().toString()
-        var bd1=d1.isSelected()
-        var bd2=d2.isSelected()
-        var bd3=d3.isSelected()
-        var bd4=d4.isSelected()
-        var bd5=d5.isSelected()
-        var bd6=d6.isSelected()
-        var bd7=d7.isSelected()
+        var bd1:Boolean=d1.isChecked
+        var bd2=d2.isChecked
+        var bd3=d3.isChecked
+        var bd4=d4.isChecked
+        var bd5=d5.isChecked
+        var bd6=d6.isChecked
+        var bd7=d7.isChecked
         var np=npd.getText().toString()
         var scount=tsub.getText().toString()
         var percentage=perct.getText().toString()
         editor.putString("name",nm)
-        editor.putBoolean("day1",bd1)
-        editor.putBoolean("day2",bd2)
-        editor.putBoolean("day3",bd3)
-        editor.putBoolean("day4",bd4)
-        editor.putBoolean("day5",bd5)
-        editor.putBoolean("day6",bd6)
-        editor.putBoolean("day7",bd7)
+        editor.putBoolean("day1",bd2)
+        editor.putBoolean("day2",bd3)
+        editor.putBoolean("day3",bd4)
+        editor.putBoolean("day4",bd5)
+        editor.putBoolean("day5",bd6)
+        editor.putBoolean("day6",bd7)
+        editor.putBoolean("day7",bd1)
         editor.putString("nperiod",np)
         editor.putString("total_sub",scount)
         editor.putString("percent",percentage)

@@ -35,6 +35,7 @@ class Monday : AppCompatActivity() {
         val db=TimmyDatabase(this)
         db.tday(day.toString())
 
+        mtitle.text=day
         createLayout()
 
     }
@@ -71,7 +72,6 @@ class Monday : AppCompatActivity() {
         var list=db.fetch_subbg(this)
         val array_adapter=ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list)
         array_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        var sppinner=Array(pcount,{i-> Spinner(this)})
         var i=0
         var p=1
         for(i in 0..spinner.lastIndex){
