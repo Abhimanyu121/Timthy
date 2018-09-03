@@ -25,15 +25,20 @@ class sublist : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sublist)
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val scount = Integer.parseInt(preferences.getString("total_sub", "0"))
+        val lcount = Integer.parseInt(preferences.getString("lab", "0"))
 
 
-      createtv()
+        val sview=createtv(scount)
+        val lview=lab_view(lcount)
+        click(lview,sview,lcount,scount)
 
     }
 
-     fun createtv() {
-        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val scount = Integer.parseInt(preferences.getString("total_sub", "0"))
+     fun createtv(scount:Int):Array<AutoCompleteTextView> {
+
+
         xtitle.setText("Enter name of all the "+scount +" subjects")
         var tva:Array<AutoCompleteTextView> = Array(scount,{j -> AutoCompleteTextView(this)  })
         var i = 0
@@ -41,27 +46,59 @@ class sublist : AppCompatActivity() {
             var k=i
             tva!![i].setHint("Enter Subject number :"+(k+1))
             tva!![i].setHintTextColor(WHITE)
+            tva[i].maxLines=1
             llsublist.addView(tva!![i])
 
             i++
         }
+
+
+
+      return tva
+
+    }
+    fun lab_view(lcount:Int):Array<AutoCompleteTextView>{
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+        jtitle.text="Enter name of all the "+lcount +" labs"
+
+        var tva:Array<AutoCompleteTextView> = Array(lcount,{j -> AutoCompleteTextView(this)  })
+        var i = 0
+        while (i <lcount) {
+            var k=i
+            tva!![i].setHint("Enter Lab Number :"+(k+1))
+            tva!![i].setHintTextColor(WHITE)
+            tva[i].maxLines=1
+            lablist.addView(tva!![i])
+
+            i++
+        }
+        return tva
+    }
+    fun click(lab:Array<AutoCompleteTextView>,period:Array<AutoCompleteTextView>,lcount:Int,scount:Int){
         val button=buttonsub
         button.setOnClickListener {view ->
             var i=0
             val db=TimmyDatabase(this)
             db.add_Sub("free_period",this)
             while(i<scount){
-                var name=tva[i].getText().toString().replace(" ","_",true).toLowerCase()
+                var name=period[i].getText().toString().replace(" ","_",true).toLowerCase()
                 db.add_Sub(name,this)
                 i++
                 Toast.makeText(this,"Done!",Toast.LENGTH_LONG)
 
             }
+            var j=0
+            while(j<lcount){
+                var name=lab[j].getText().toString().replace(" ","_",true).toLowerCase()
+                db.add_lab(name,this)
+                j++
+                Toast.makeText(this,"Done!",Toast.LENGTH_LONG)
+            }
+
             change_activity()
 
         }
-
-
     }
     fun change_activity(){
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)

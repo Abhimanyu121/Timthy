@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".sublist">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-<TextView
+   <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/xtitle"
@@ -20,14 +24,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/llsublist"></LinearLayout>
+        android:id="@+id/llsublist">
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/jtitle"
+        android:textAllCaps="true"
+        android:textColor="#ffffff"
+        android:layout_gravity="center"
+        android:textSize="24dip"
+        android:textAlignment="center" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/lablist">
+
+    </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ADD SUBJECTS"
         android:background="@color/colorAccent"
-        android:id="@+id/buttonsub"
-        />
+        android:id="@+id/buttonsub" />
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

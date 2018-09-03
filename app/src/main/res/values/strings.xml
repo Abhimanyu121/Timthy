@@ -23,4 +23,24 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="enter_your_name">Enter your Name</string>
+    <string name="choose_the_working_days">Choose the working days</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">tuesday</string>
+    <string name="wednesday">wednesday</string>
+    <string name="thursday">thursday</string>
+    <string name="friday">friday</string>
+    <string name="saturday">saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="number_of_periods_in_a_day">Number of periods in a day</string>
+    <string name="minimum_permissible_attendance">Minimum permissible attendance</string>
+    <string name="total_number_of_subjects">Total Number Of Subjects</string>
+    <string name="number_of_labs">Number of Labs</string>
+    <string name="number_of_lab_classes">Number of Lab classes</string>
+    <string name="lenght_of_lab_ex_one_1_lab_2_periods">Lenght of lab (ex:one 1 lab= 2 periods)</string>
+    <string name="get_started">GET STARTED</string>
+    <string name="monday_a">MONDAY</string>
+    <string name="select_periods_of_the_day">Select periods of the day</string>
+    <string name="enter_name_of_period">Enter Name Of Period</string>
+    <string name="free_period">Free Period</string>
 </resources>

@@ -37,9 +37,11 @@ class initial : AppCompatActivity() {
         var bd5=d5.isChecked
         var bd6=d6.isChecked
         var bd7=d7.isChecked
-        var np=npd.getText().toString()
-        var scount=tsub.getText().toString()
-        var percentage=perct.getText().toString()
+        var np=npd.text.toString()
+        var scount=tsub.text.toString()
+        var percentage=perct.text.toString()
+        val klab=lab.text.toString()
+        val plab=labsize.text.toString()
         editor.putString("name",nm)
         editor.putBoolean("day1",bd2)
         editor.putBoolean("day2",bd3)
@@ -52,6 +54,8 @@ class initial : AppCompatActivity() {
         editor.putString("total_sub",scount)
         editor.putString("percent",percentage)
         editor.putBoolean("status",true)
+        editor.putString("lab",klab)
+        editor.putString("labsize",plab)
         Toast.makeText(this,"DONE",Toast.LENGTH_SHORT).show()
         if (editor.commit()==false)
         {
@@ -79,6 +83,18 @@ class initial : AppCompatActivity() {
 
        else if (perct.getText().isNullOrEmpty() && perct.getText().isBlank()){
             Toast.makeText(this,"Please enter minimum attendance required!",Toast.LENGTH_LONG).show()
+            Log.e("bleh9","bleh")
+            return false
+        }
+
+        else if (lab.getText().isNullOrEmpty() && lab.getText().isBlank()){
+            Toast.makeText(this,"Please enter number of labs or 0",Toast.LENGTH_LONG).show()
+            Log.e("bleh9","bleh")
+            return false
+        }
+
+        else if (labsize.getText().isNullOrEmpty() && labsize.getText().isBlank()){
+            Toast.makeText(this,"Please enter duration of lab in terms of periods",Toast.LENGTH_LONG).show()
             Log.e("bleh9","bleh")
             return false
         }

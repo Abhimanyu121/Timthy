@@ -14,7 +14,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter Name Of Period"/>
+            android:text="@string/enter_name_of_period"/>
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         <android.support.v7.widget.AppCompatCheckBox
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Free Period"
+            android:text="@string/free_period"
             android:textAllCaps="true"
             android:id="@+id/fperiod"/>
     </LinearLayout>

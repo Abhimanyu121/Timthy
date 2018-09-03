@@ -15,11 +15,11 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_monday.*
+import java.util.Arrays
 
 
 class Monday : AppCompatActivity() {
-    var recyl:RecyclerView?=null
-    var recyadapter:recycler1?=null
+
     var day:String?=null
     var key:Int?=null
 
@@ -65,16 +65,18 @@ class Monday : AppCompatActivity() {
 
     fun createLayout(){
 
-        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
-        val pcount = Integer.parseInt(preferences.getString("nperiod", "0"))
+        val db=TimmyDatabase(this)
+        val sublist=merge_list()
+
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this@Monday)
+        val pcount=Integer.parseInt(preferences.getString("nperiod","0"))
         var spinner =Array<Spinner>(pcount,{j ->Spinner(this)})
-        var db=TimmyDatabase(this)
-        var list=db.fetch_subbg(this)
-        val array_adapter=ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list)
+
+        val array_adapter=ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,sublist)
         array_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         var i=0
         var p=1
-        for(i in 0..spinner.lastIndex){
+        while(i in 0..spinner.lastIndex){
             val tv=TextView(this)
             tv.setText("PERIOD:"+p)
             tv.setTextColor(WHITE)
@@ -83,7 +85,24 @@ class Monday : AppCompatActivity() {
             spinner[i].adapter=array_adapter
            spinner[i].onItemSelectedListener= object: AdapterView.OnItemSelectedListener{
                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                   Log.e("selectedbleh", spinner[i].getSelectedItem().toString())
+                 //  Log.e("selectedbleh", spinner[i].getSelectedItem().toString())
+                   val lab=db.fetch_lab(this@Monday)
+                   var j=0
+                   while(j<=lab!!.lastIndex){
+                       if(lab[j].equals(spinner[i].selectedItem)){
+                           val preferences = PreferenceManager.getDefaultSharedPreferences(this@Monday)
+                           var s=preferences.getInt("labsize",1)
+                           s--
+                           while(0<s){
+                               i++
+                               spinner[i].isEnabled = false
+
+
+                           }
+                       }
+                   }
+
+
                }
 
                override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -94,6 +113,7 @@ class Monday : AppCompatActivity() {
             llmonday.addView(tv)
             llmonday.addView(spinner[i])
             p++
+            i++
         }
         fab.setOnClickListener{view ->
             var i=0
@@ -133,6 +153,17 @@ class Monday : AppCompatActivity() {
             val intent=Intent(this,MainActivity::class.java)
             startActivity(intent)
         }
+    }
+    fun merge_list():Array<String>?{
+        val db=TimmyDatabase(this)
+        val cls=db.fetch_subbg(this)
+        val lab=db.fetch_subbg(this)
+        val aLen = cls!!.size
+        val bLen = lab!!.size
+        val merged = Array<String>(aLen + bLen,{i->""})
+        System.arraycopy(cls, 0, merged, 0, aLen)
+        System.arraycopy(lab, 0, merged, aLen, bLen)
+        return merged
     }
 
 }
